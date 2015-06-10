@@ -2,10 +2,10 @@ $(document).ready(function(){
 
 	/*--- Get user input ---*/
 
-	$('input#numberEnter').click(function (){
-		$('#userNumber').val;
-  		var userNumberEnter = $('#userNumber').val();
-  		console.log(userNumberEnter);
+	$('input').keyup(function (){
+  		var userNumber = $(this).val();
+  		console.log(userNumber);
+  		$( "p" ).text(userNumber);
 
   	return false; 
 
@@ -13,11 +13,18 @@ $(document).ready(function(){
 
 });
 
+function showNumber(str) {
+    document.getElementById('number-fact').innerText = str;
+}
+(function() {
+	var scriptTag = document.createElement('script');
+    scriptTag.async = true;
+    scriptTag.src = "http://numbersapi.com/42/math?callback=showNumber";
+});
+
 /*
 
 http://numbersapi.com/42
+https://numbersapi.p.mashape.com/{number}/math
 
 */
-
-
-var result = $.getJSON("http://numbersapi.com/" + userNumberEnter);

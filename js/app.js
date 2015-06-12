@@ -2,29 +2,25 @@ $(document).ready(function(){
 
 	/*--- Get user input ---*/
 
-	$('input').keyup(function (){
-  		var userNumber = $(this).val();
-  		console.log(userNumber);
-  		$( "p" ).text(userNumber);
+	$('input').keypress(function (event){
+		var keycode = (event.keyCode ? event.keyCode : event.which);
+    		if(keycode == '13'){
+        		var userNumber = $(this).val();
 
-  	return false; 
+        		alert("Number is:" + userNumber);
 
-  	});
+        		if(jQuery.isNumeric(userNumber)) {
+        			$.get('http://numbersapi.com/' + userNumber + '/trivia?notfound=floor&fragment', function(data) {
+    					$( "p" ).text(data);	
+        		} else {
 
+        			alert("That's not a number!");
+
+        		});
+
+	  		return false;	
+
+    		}
+  		}
+  	})
 });
-
-function showNumber(str) {
-    document.getElementById('number-fact').innerText = str;
-}
-(function() {
-	var scriptTag = document.createElement('script');
-    scriptTag.async = true;
-    scriptTag.src = "http://numbersapi.com/42/math?callback=showNumber";
-});
-
-/*
-
-http://numbersapi.com/42
-https://numbersapi.p.mashape.com/{number}/math
-
-*/

@@ -13,14 +13,9 @@ $(document).ready(function(){
         			$.get('http://numbersapi.com/' + userNumber + '/trivia?notfound=floor&fragment', function(data) {
     					$( "p" ).text(data);	
         		} else {
-
         			alert("That's not a number!");
-
-        		});
-
+        		}
 	  		return false;	
-
-    		}
-  		}
-  	})
+    	}
+  	});
 });
